@@ -1,11 +1,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdio.h>
 
 #define TAMMSSG 1000
 
 void produzMsg (char *buf) {
-    strcpy (buf, "Mensagem de teste");
+    strcpy(buf, "Mensagem de teste");
 }
 
 void trataMsg (char *buf) {

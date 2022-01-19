@@ -1,8 +1,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
 
 #define TAMMSSG 1000
+
+void trataPedido(char *buf) {
+    printf("bom dia sou o chiquinho\n");
+}
 
 int main () {
     int fcli, fserv, n;
