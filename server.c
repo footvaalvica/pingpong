@@ -14,15 +14,6 @@ int main () {
     int fcli, fserv, n;
     char buf[TAMMSSG];
 
-    unlink("/tmp/servidor");
-    unlink("/tmp/cliente");
-
-    if (mkfifo("/tmp/servidor", 0777) < 0) {
-        return 1;
-    } if (mkfifo("/tmp/cliente", 0777) < 0) {
-        return 1;
-    }
-
     if ((fserv = open("/tmp/servidor", O_RDONLY)) < 0) {
         return 1;
     } if ((fcli = open("/tmp/cliente", O_WRONLY)) < 0) {
@@ -37,8 +28,8 @@ int main () {
         trataPedido(buf);
         n = write(fcli, buf, TAMMSSG);
     }
+
     close(fserv);
     close(fcli);
-    unlink("/tmp/servidor");
-    unlink("/tmp/cliente");
+    return 0;
 }

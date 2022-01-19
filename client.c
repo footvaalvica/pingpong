@@ -19,6 +19,15 @@ int main () {
     int fcli, fserv;
     char buf[TAMMSSG];
 
+    unlink("/tmp/servidor");
+    unlink("/tmp/cliente");
+
+    if (mkfifo("/tmp/servidor", 0777) < 0) {
+        return 1;
+    } if (mkfifo("/tmp/cliente", 0777) < 0) {
+        return 1;
+    }
+
     if ((fserv = open("/tmp/servidor", O_WRONLY)) < 0) {
         return 1;
     } if ((fcli = open("/tmp/cliente", O_RDONLY)) < 0) {
@@ -32,5 +41,8 @@ int main () {
 
     close(fserv);
     close(fcli);
+
+    unlink("/tmp/servidor");
+    unlink("/tmp/cliente");
     return 0;
 }
